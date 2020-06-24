@@ -7,4 +7,4 @@
 
  At the current time the CSV file of the initial data, including longitude and latitude, has been converted into JSON and a crude HTML5 canvas project was created but suffered from performance issues when loading in the large amounts of images. If you download and unzip the images into a cloned repository the .gitignore file will not attempt to commit or push the files. Note the file must be called "images".
 
- ## Download and unzip the file: ```https://jayhal.es/shared/astro-pi/compressed-images.zip```` into a file called ```images```` in the repo.
+ ## Download and unzip the file: ```https://jayhal.es/shared/astro-pi/compressed-images.zip``` into a file called ```images``` in the repo.

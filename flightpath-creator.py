@@ -1,4 +1,6 @@
-#A new effort to combine all the images at the correct distances apart to show the flightpath. 
+#A new effort to combine all the images at the correct distances apart to show the flightpath.
+# Currently working on finding the scale of the images.
+
 from PIL import Image
 import json
 import os
