@@ -1,3 +1,4 @@
+#A new effort to combine all the images at the correct distances apart to show the flightpath. 
 from PIL import Image
 import json
 import os

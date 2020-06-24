@@ -5,25 +5,17 @@ const imageNum = 2501;
 var i = 1;
 var frames = {};
 
-
-if (window.Worker) {
-
-  var myWorker = new Worker('./imageloader.js');
-
+function frame() {
+  image = new Image();
+  image.src = "../images/zz_oba_" + j + ".jpg";
+  context.drawImage(image, 0, 0);
 }
-
-
-function frameRenderer() {
-  if (i > imageNum) end();
-  context.drawImage(frames[i], 0, 0);
-  i++;
-}
-
 
 var frameRate = setInterval(function() {
-  frameRenderer();
+  if (i > imageNum) end();
+  frame();
+  i++;
 }, 1000 / 30);
-
 
 
 function end() {

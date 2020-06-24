@@ -1,3 +1,5 @@
+#The python programmed used to convert the CSV into JSON for the canvas project.
+
 import json
 old = open("Raw results.csv")
 new = open("new long lats.txt")
@@ -16,12 +18,9 @@ for i in range(len(oldText)):
     vals[i] = {
         "long": newText[i].split(",")[0],
         "lat": newText[i].split(",")[1],
-        "time": oldText[i].split(",")[3]        
+        "time": oldText[i].split(",")[3]
         }
 
 newFile = open("results.txt", "w+")
 newFile.write(json.dumps(vals))
 newFile.close()
-
-
-
