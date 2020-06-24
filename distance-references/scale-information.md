@@ -8,8 +8,16 @@ One of the most obvious and large land marks the Dakar peninsular. Using Google 
 
 The distance in pixels between the two is 514.6px and the distance in kilometres in 111.73km.
 
-Therefore 0.21712km per pixel.
+514.6 / 111.73 = 4.60575
 
-111.32km in 1 degree.
+Therefore 4.60575 pixels per km.
 
-## Therefore 1px must be equal to 0.01950 degrees (In decimal format)
+There are 111.32km in 1 degree.
+
+4.60575 * 111.32 = 512.71209
+
+## 512.71209 pixels per 1 degree
+
+1 / 512.71209 = 0.00195
+
+## 0.00195 degrees per 1 pixel
