@@ -21,3 +21,5 @@ There are 111.12km in 1 degree.
 1 / 511.79094 = 0.00195
 
 ## 0.00195 degrees per 1 pixel
+
+Note: All these numbers were rounded to 5 decimal places.

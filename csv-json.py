@@ -1,26 +1,28 @@
 #The python programmed used to convert the CSV into JSON for the canvas project.
-
+#Decided to keep developing it later in the project for reusability for other possible methods and languages.
 import json
-old = open("Raw results.csv")
-new = open("new long lats.txt")
 
+def degrees_to_decimal_degrees(degrees): # Colon seperated string. e.g. "130:30:21"
+    output = degrees.split(":")
+    output = float(output[0])//1 + float(output[1])/60 + float(output[2])/3600
+    return output
+
+old = open("runtime/first-results.csv")
 oldText = old.read()
-newText = new.read()
-
-vals = {};
-
-
-
+vals = {}
 oldText = oldText.split("\n")
-newText = newText.split("\n")
 
-for i in range(len(oldText)):
+for i in range(1, len(oldText)): #To skip headers
+
+    long = degrees_to_decimal_degrees(oldText[i].split(",")[0])
+    lat  = degrees_to_decimal_degrees(oldText[i].split(",")[1])
+
     vals[i] = {
-        "long": newText[i].split(",")[0],
-        "lat": newText[i].split(",")[1],
-        "time": oldText[i].split(",")[3]
+        "long": long,
+        "lat": lat,
+        "time": float(oldText[i].split(",")[3])
         }
 
-newFile = open("results.txt", "w+")
+newFile = open("results.json", "w+")
 newFile.write(json.dumps(vals))
 newFile.close()
