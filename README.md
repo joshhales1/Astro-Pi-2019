@@ -10,4 +10,5 @@
  ## Download and unzip the file: ```https://jayhal.es/shared/astro-pi/compressed-images.zip``` into a file called ```images``` in the repo.
 
  The below image is the current state of the image rendered by the Python program creating the flightpath of the ISS. At scale x0.1.
+ Note: The dark section are during the night and the yellowish frames before and after these sections are due to reflection from the sun hitting the casing at the wrong angle.
  ![The current state of the image rendered by the Python program creating the flightpath of the ISS"](./flightpath-wave-output.png)
