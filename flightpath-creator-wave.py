@@ -20,6 +20,7 @@ from PIL import Image
 import json
 import os
 
+from math import degrees, atan2
 SCALE = 0.1
 
 ppd = 512.71209
@@ -44,9 +45,9 @@ for i in range(1, len(data)): # Finds the upper and lower bounds of the long and
     if item["lat"] <  boundries["lat min"]:  boundries["lat min"] =  item["lat"]
 
 
-x_length = ( boundries["long max"] + abs(boundries["long min"]) ) * ppd * SCALE
-y_length = ( boundries["lat max"] + abs(boundries["lat min"]) ) * ppd * SCALE
-background = Image.new("RGB", (round(x_length), round(y_length)), (255, 255, 255))
+x_length = (boundries["long max"] + abs(boundries["long min"])) * ppd * SCALE
+y_length = (boundries["lat max"] + abs(boundries["lat min"])) * ppd * SCALE
+background = Image.new("RGBA", (round(x_length), round(y_length)), (255, 255, 255))
 
 """
 Correct scale causes memory errors.
@@ -54,22 +55,45 @@ The image would be 184680px 51300px
 """
 
 # The pixel per degree constant.
+old_long = 0
+old_lat  = 0
 
-for i in range(450, 500, 1):
+start_image = 1
+end_image = len(data)
+step = 1
+
+for i in range(start_image, end_image, step):
 
     im = Image.open("images/zz_oba_" + str(i) + ".jpg")
     im = im.crop((400, 0, 1500, 1080))
 
-    new_width = round( im.size[0] * SCALE )
-    new_height = round( im.size[1] * SCALE )
+    new_width = round(im.size[0] * SCALE)
+    new_height = round(im.size[1] * SCALE)
 
     im = im.resize((new_width, new_height), Image.ANTIALIAS)
 
-    long = round(data[str(i)]["long"] * ppd * SCALE)
-    lat = round(data[str(i)]["lat"] * ppd * SCALE)
+    x_offset = im.size[0] // 2
+    y_offset = im.size[1] // 2
 
-    #print(long, lat, x_length//2, y_length//2)
-    background.paste(im, (int(x_length // 2 + long), int(y_length // 2 + lat)))
+    raw_long = data[str(i)]["long"]
+    raw_lat = data[str(i)]["lat"]
 
+    long = round(raw_long * ppd * SCALE)
+    lat = round(raw_lat * ppd * SCALE)
+
+    long_distance = raw_long - old_long
+    lat_distance  = raw_lat - old_lat
+
+    angle = atan2(lat_distance, long_distance)
+    angle = -degrees(angle)
+
+    if angle < 0: angle = 360 + angle
+
+    im = im.convert("RGBA")
+    im = im.rotate(angle, Image.NEAREST, expand = 1)
+
+    background.paste(im, (int(x_length // 2 + long) - x_offset, int(y_length // 2 + lat) - y_offset), im)
+    old_long = raw_long
+    old_lat  = raw_lat
 
 background.save("flightpath-wave-output.png")
