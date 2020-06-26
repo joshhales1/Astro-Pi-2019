@@ -47,6 +47,10 @@ for i in range(1, len(data)): # Finds the upper and lower bounds of the long and
 
 x_length = (boundries["long max"] + abs(boundries["long min"])) * ppd * SCALE
 y_length = (boundries["lat max"] + abs(boundries["lat min"])) * ppd * SCALE
+
+x_length += (1920 * SCALE) // 2
+y_length += (1080 * SCALE) // 2
+
 background = Image.new("RGBA", (round(x_length), round(y_length)), (255, 255, 255))
 
 """
@@ -61,7 +65,7 @@ old_lat  = 0
 start_image = 1
 end_image = len(data)
 step = 1
-
+percentage = 0
 for i in range(start_image, end_image, step):
 
     im = Image.open("images/zz_oba_" + str(i) + ".jpg")
@@ -95,5 +99,11 @@ for i in range(start_image, end_image, step):
     background.paste(im, (int(x_length // 2 + long) - x_offset, int(y_length // 2 + lat) - y_offset), im)
     old_long = raw_long
     old_lat  = raw_lat
+
+    if percentage != int(i / end_image * 100):
+        print(str(percentage) + "%")
+        percentage = int(i / end_image * 100)
+
+
 
 background.save("flightpath-wave-output.png")
