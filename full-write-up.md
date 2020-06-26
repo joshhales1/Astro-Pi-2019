@@ -14,3 +14,5 @@ I eventually put them all into Premier Pro to just create a video I could share 
 
 I then moved to Python, drawn by the PIL module and a strong foundation in the langauge. I immediately released that there was no way I could ever hope to accurately position the images without knowing the scale of the images. Attempts to find the FOV of the camera were inconclusive, with not enough evidence to support basing the whole project of. With the FOV some basic trigonometry could have revealed the scale of the images. The next solution presented itself in the city of Dakar.
 
+On of the most prominent landmarks in all of the frames is the city of Dakar, a spit of land pertruding from the country of Senegal. With multiple sharp edges and key points it was an optimum place to attempt to find the scale of the images. Using the distance between the most southern part of the penincular and the nost nothern top of close island I found the distance to be 514.6 pixels. Using the Google maps distance measurer tool the distance between the two points was 111.73km.
+
